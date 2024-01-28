@@ -35,6 +35,9 @@
     <div>
         <img id="qr" src="https://media.discordapp.net/attachments/972777655558631444/1201210787239309322/photo_5309915356090978715_m.jpg?ex=65c8fdb9&is=65b688b9&hm=f3b142522b7fe057046d28f3241aee410e50464ec088ffb5a7258ef331f57bdb&=&format=webp" alt="">
     </div>
+    <div id="main1">
+        <h1 id="test1"></h1>
+    </div>
     <script>
         let tg = window.Telegram.WebApp;
 
@@ -43,7 +46,9 @@
 
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
             document.getElementById("qr").style.display = "block";
-            document.getElementById("test").textContent = "Ваш QR-код " + tg.initDataUnsafe.user.first_name + " :";
+            document.getElementById("test").textContent = "Ваш QR-код:";
+            document.getElementById("tes1").textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
+
         });
     </script>
 </body>
