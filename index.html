@@ -8,8 +8,8 @@
 
 <body>
     <div id="main">
-        <h1>QR-код</h1>
-        <input type="text" placeholder="id" , id="id">
+        <h1>QR-код 1</h1>
+        <input type="text" placeholder="id" , id="first_name">
         <button id="buy">Кнопка</button>
     </div>
 
@@ -19,7 +19,7 @@
         let tg = window.Telegram.WebApp;
         let button = document.getElementById("buy");
         button.addEventListener("click", () => {
-            document.getElementById("id").value = tg.initDataUnsafe.user.username;
+            document.getElementById("first_name").value = tg.initDataUnsafe.user.first_name;
         });
     </script>
 </body>
