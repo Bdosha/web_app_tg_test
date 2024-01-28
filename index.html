@@ -19,7 +19,13 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
+        tg.MainButton.show();
         let button = document.getElementById("but");
+        Telegram.WebApp.onEvent('mainButtonClicked', function() {
+            document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
+            tg.sendData("some string that we need to send");
+            //при клике на основную кнопку отправляем данные в строковом виде
+        });
         button.addEventListener('click', () => {
             document.getElementById("test1").textContent = "sss";
             document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
