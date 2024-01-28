@@ -45,9 +45,9 @@
         tg.MainButton.text = "Получить QR - код";
 
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
-            document.getElementById("tes1").textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
             document.getElementById("qr").style.display = "block";
             document.getElementById("test").textContent = "Ваш QR-код:";
+            document.getElementById("test1").textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
             tg.MainButton.hide();
         });
     </script>
