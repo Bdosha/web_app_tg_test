@@ -5,6 +5,7 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Title</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
         body {
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
@@ -12,6 +13,7 @@
             flex-direction: column;
             align-items: center;
             font-size: 18px;
+            font-family: "Montserant", sans-serif;
         }
     </style>
 </head>
@@ -25,8 +27,11 @@
         let tg = window.Telegram.WebApp;
 
         tg.MainButton.show();
-        Telegram.WebApp.onEvent('mainButtonClicked', function(){
-	        tg.sendData("test"); });
+        tg.MainButton.text = "Получить QR - код";
+        Telegram.WebApp.onEvent('mainButtonClicked', function() {
+            document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
+
+        });
     </script>
 </body>
 
