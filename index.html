@@ -15,6 +15,15 @@
             font-size: 18px;
             font-family: "Montserant", sans-serif;
         }
+        
+        div {
+            align-items: center;
+        }
+        
+        img {
+            border-radius: 50px;
+            display: none;
+        }
     </style>
 </head>
 
@@ -23,13 +32,16 @@
     <div id="main">
         <h1 id="test">QR-код</h1>
     </div>
+    <div> <img id="qr" ,src="https://media.discordapp.net/attachments/972777655558631444/1201210787239309322/photo_5309915356090978715_m.jpg?ex=65c8fdb9&is=65b688b9&hm=f3b142522b7fe057046d28f3241aee410e50464ec088ffb5a7258ef331f57bdb&=&format=webp" alt="">
+    </div>
     <script>
         let tg = window.Telegram.WebApp;
 
         tg.MainButton.show();
         tg.MainButton.text = "Получить QR - код";
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
-            document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
+            document.getElementById("qr").style.display = "block";
+            document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
 
         });
     </script>
