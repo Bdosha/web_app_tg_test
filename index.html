@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <meta charset="UTF-8">
     <title>Title</title>
 </head>
 
 <body>
     <div id="main">
         <h1 id="test">QR-код</h1>
-        <h1 id="test1">QR-код</h1>
-        <button id="but">Кнопка</button>
     </div>
     <script>
         let tg = window.Telegram.WebApp;
-        tg.expand();
+
         tg.MainButton.show();
-        let button = document.getElementById("but");
-        console.log(tg.initDataUnsafe);
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
             console.log(tg)
             console.log(tg.initData);
-            console.log(tg.initData.user);
-            document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
-            tg.sendData("some string that we need to send");
-            //при клике на основную кнопку отправляем данные в строковом виде
-        });
-        button.addEventListener('click', () => {
-            console.log(tg.initData);
-            console.log(tg.initData.user);
-            document.getElementById("test1").textContent = "sss";
+            console.log(window.Telegram.WebApp);
+
             document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
         });
     </script>
