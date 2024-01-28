@@ -9,6 +9,7 @@
 <body>
     <div id="main">
         <h1 id="test">QR-код</h1>
+        <h1 id="test1">QR-код</h1>
         <button id="but">Кнопка</button>
     </div>
 
@@ -19,8 +20,9 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
         let button = document.getElementById("but");
-        button.addEventListener('click', function() {
-            document.getElementById("test").textContent = tg.initDataUnsafe.user;
+        button.addEventListener('click', () => {
+            document.getElementById("test1").textContent = "sss";
+            document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
         });
     </script>
 </body>
