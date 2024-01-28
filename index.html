@@ -8,18 +8,19 @@
 
 <body>
     <div id="main">
-        <h1>QR-код 1</h1>
-        <input type="text" placeholder="id" , id="first_name">
-        <button id="buy">Кнопка</button>
+        <h1 id="test">QR-код</h1>
+        <button id="but">Кнопка</button>
     </div>
 
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <script>
         let tg = window.Telegram.WebApp;
-        let button = document.getElementById("buy");
-        button.addEventListener("click", () => {
-            document.getElementById("first_name").value = tg.initDataUnsafe.user.first_name;
+        tg.expand();
+        let button = document.getElementById("but");
+        button.addEventListener('click', function() {
+            document.getElementById("test").textContent = tg.initDataUnsafe.user;
         });
     </script>
 </body>
