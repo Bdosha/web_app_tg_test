@@ -29,8 +29,10 @@
             console.log(tg)
             console.log(tg.initData);
             console.log(window.Telegram.WebApp);
-
+            //при клике на основную кнопку отправляем данные в строковом виде
             document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
+            tg.sendData("some string that we need to send");
+
         });
     </script>
 </body>
