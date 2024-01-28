@@ -23,11 +23,13 @@
         let button = document.getElementById("but");
         console.log(tg.initDataUnsafe);
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
+            console.log(tg.initDataUnsafe);
             document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
             tg.sendData("some string that we need to send");
             //при клике на основную кнопку отправляем данные в строковом виде
         });
         button.addEventListener('click', () => {
+            console.log(tg.initDataUnsafe);
             document.getElementById("test1").textContent = "sss";
             document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
         });
