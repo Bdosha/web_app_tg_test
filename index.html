@@ -23,8 +23,8 @@
         let button = document.getElementById("but");
         console.log(tg.initDataUnsafe);
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
-            console.log(tg.initData);
-            console.log(tg.initData.user);
+            console.log(tg);
+            console.log(tg);
             document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
             tg.sendData("some string that we need to send");
             //при клике на основную кнопку отправляем данные в строковом виде
