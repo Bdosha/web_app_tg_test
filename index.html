@@ -2,6 +2,7 @@
 <html lang="ru">
 
 <head>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -12,10 +13,6 @@
         <h1 id="test1">QR-код</h1>
         <button id="but">Кнопка</button>
     </div>
-
-
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
@@ -23,8 +20,9 @@
         let button = document.getElementById("but");
         console.log(tg.initDataUnsafe);
         Telegram.WebApp.onEvent('mainButtonClicked', function() {
-            console.log(tg);
-            console.log(tg);
+            console.log(tg)
+            console.log(tg.initData);
+            console.log(tg.initData.user);
             document.getElementById("test").textContent = tg.initDataUnsafe.user.first_name;
             tg.sendData("some string that we need to send");
             //при клике на основную кнопку отправляем данные в строковом виде
