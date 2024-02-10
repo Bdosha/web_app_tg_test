@@ -52,7 +52,7 @@
 
     tg.MainButton.show();
     tg.MainButton.text = "Получить QR - код";
-
+    tg.secondary_bg_color = "#313131"
     Telegram.WebApp.onEvent('mainButtonClicked', function() {
         document.getElementById("qr").style.display = "block";
         document.getElementById("test").textContent = "Ваш QR-код:";
