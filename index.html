@@ -27,7 +27,7 @@
             align-items: center;
         }
 
-        #qrcode {
+        #qr {
             border-radius: 50px;
             display: none;
             /* Initially hide the image */
@@ -53,8 +53,8 @@
     // Если data есть, то генерируем QR код
     if (data) {
 
-      QRCode.toDataURL(data, { width: 200, height: 200 }, function (err, url) {
-        document.getElementById('qrcode').innerHTML = `<img src="${url}" alt="QR Code">`;
+      QRCode.toDataURL(data, { width: 512, height: 512 }, function (err, url) {
+        document.getElementById('qrcode').innerHTML = `<img src="${url}" id="qr">`;
       });
     } else {
       document.getElementById('qrcode').innerText = 'Параметр data не найден.';
@@ -68,7 +68,7 @@
     tg.MainButton.text = "Получить QR - код";
     tg.secondary_bg_color = "#313131"
     Telegram.WebApp.onEvent('mainButtonClicked', function() {
-        document.getElementById("qrcode").style.display = "block";
+        document.getElementById("qr").style.display = "block";
         document.getElementById("test").textContent = "Ваш QR-код:";
         document.getElementById("test1").textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
         tg.MainButton.hide();
