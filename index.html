@@ -43,7 +43,7 @@
                 document.getElementById("timer").innerText = "Время истекло";
                 document.getElementById("qr").style.display = "none";
                 let tg = window.Telegram.WebApp;
-                tg.HapticFeedback.impactOccurred(soft);
+                tg.HapticFeedback.notificationOccurred(error);
                 tg.close();
               }
             }, 1000);
