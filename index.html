@@ -36,7 +36,7 @@
               var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
               // Выводим результат в элемент с id="timer"
-              document.getElementById("timer").innerText = minutes + "m " + seconds + "s ";
+              document.getElementById("timer").innerText ="Актуален ещё " + minutes + "м " + seconds + "с ";
 
               // По истечении времени останавливаем таймер
               if (distance < 0) {
@@ -84,9 +84,9 @@
 <div id="main">
     <h1 id="test">Доступ в школу</h1>
 </div>
-<div id="timer"></div>
+<div id="timer" ></div>
 
-<div id="qrcode"></div>
+<div id="qrcode" style="margin: 20px;"></div>
 <div id="main1">
     <h1 id="test1"></h1>
 </div>
@@ -117,7 +117,7 @@
         document.getElementById("qr").style.display = "block";
         document.getElementById("timer").style.display = "block";
         document.getElementById("test").textContent = "Ваш QR-код:";
-        document.getElementById("test1").textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
+        document.getElementById("test1").textContent = params.get('name')
         tg.MainButton.hide();
     });
 </script>
