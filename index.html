@@ -26,7 +26,7 @@
         function initializeTimer() {
           var timeParam = getQueryVariable("time");
           if (timeParam) {
-            var countDownDate = new Date(decodeURIComponent(timeParam)).getTime() + 10000; // Устанавливаем время на 5 минут вперед
+            var countDownDate = new Date(decodeURIComponent(timeParam)).getTime() + 30000; // Устанавливаем время на 5 минут вперед
             var x = setInterval(function() {
               var now = new Date().getTime();
               var distance = countDownDate - now;
@@ -43,6 +43,7 @@
                 document.getElementById("timer").innerText = "Время истекло";
                 document.getElementById("qr").style.display = "none";
                 let tg = window.Telegram.WebApp;
+                tg.HapticFeedback.notificationOccurred(type = "error");
                 tg.HapticFeedback.notificationOccurred(type = "error");
                 tg.close();
               }
