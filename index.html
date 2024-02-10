@@ -3,9 +3,14 @@
 
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://forms.yandex.ru/_static/embed.js"></script>
-
-    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <script>
+        function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    </script>
+    <title>Доступ в школу</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
         body {
@@ -17,19 +22,17 @@
             font-size: 18px;
             font-family: "Montserrat", sans-serif;
         }
-        
+
         div {
             align-items: center;
         }
-        
-        #qr {
+
+        #qrcode {
             border-radius: 50px;
             display: none;
             /* Initially hide the image */
         }
-        #form{
-            display = "block";
-        }
+
     </style>
 </head>
 
@@ -37,16 +40,27 @@
 <div id="main">
     <h1 id="test">Доступ в школу</h1>
 </div>
-<div>
-    <img id="qr"
-         src="https://media.discordapp.net/attachments/972777655558631444/1201210787239309322/photo_5309915356090978715_m.jpg?ex=65c8fdb9&is=65b688b9&hm=f3b142522b7fe057046d28f3241aee410e50464ec088ffb5a7258ef331f57bdb&=&format=webp"
-         alt="">
-</div>
+<div id="qrcode"></div>
 <div id="main1">
     <h1 id="test1"></h1>
 </div>
-<iframe id = 'form' src="https://forms.yandex.ru/u/65a0102f068ff0148985be73/?iframe=1" frameborder="0"
-        name="ya-form-65a0102f068ff0148985be73" width="100%"></iframe>
+
+<script>
+    // Получаем параметры из URL
+    const params = new URLSearchParams(window.location.search);
+    const data = params.get('data'); // Получаем параметр data
+
+    // Если data есть, то генерируем QR код
+    if (data) {
+
+      QRCode.toDataURL(data, { width: 200, height: 200 }, function (err, url) {
+        document.getElementById('qrcode').innerHTML = `<img src="${url}" alt="QR Code">`;
+      });
+    } else {
+      document.getElementById('qrcode').innerText = 'Параметр data не найден.';
+    }
+</script>
+
 <script>
     let tg = window.Telegram.WebApp;
 
@@ -54,7 +68,7 @@
     tg.MainButton.text = "Получить QR - код";
     tg.secondary_bg_color = "#313131"
     Telegram.WebApp.onEvent('mainButtonClicked', function() {
-        document.getElementById("qr").style.display = "block";
+        document.getElementById("qrcode").style.display = "block";
         document.getElementById("test").textContent = "Ваш QR-код:";
         document.getElementById("test1").textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
         tg.MainButton.hide();
