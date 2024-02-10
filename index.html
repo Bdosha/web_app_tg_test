@@ -4,12 +4,12 @@
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
-    <script>
-        function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-    </script>
+    <!--    <script>-->
+    <!--        function getQueryParam(param) {-->
+    <!--        const urlParams = new URLSearchParams(window.location.search);-->
+    <!--        return urlParams.get(param);-->
+    <!--    }-->
+    <!--    </script>-->
     <script>
         // Функция для получения параметра времени из адресной строки
         function getQueryVariable(variable) {
@@ -26,17 +26,16 @@
         function initializeTimer() {
           var timeParam = getQueryVariable("time");
           if (timeParam) {
-            var countDownDate = new Date(decodeURIComponent(timeParam)).getTime() + 5*60000; // Устанавливаем время на 5 минут вперед
+            var countDownDate = new Date(decodeURIComponent(timeParam)).getTime() + 30000; // Устанавливаем время на 5 минут вперед
             var x = setInterval(function() {
               var now = new Date().getTime();
               var distance = countDownDate - now;
 
               // Пересчет времени для дней, часов, минут и секунд
-              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
               var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
               // Выводим результат в элемент с id="timer"
-              document.getElementById("timer").innerText ="Актуален ещё " + minutes + "м " + seconds + "с ";
+              document.getElementById("timer").innerText ="Актуален ещё " + seconds + "с ";
 
               // По истечении времени останавливаем таймер
               if (distance < 0) {
@@ -46,7 +45,7 @@
               }
             }, 1000);
           } else {
-            document.getElementById("timer").innerText = "Время не задано";
+            console.log("error");
           }
         }
 
@@ -71,55 +70,41 @@
 
         #qr {
             border-radius: 50px;
-            display: none;
+            display: block;
         }
         #timer {
-            display: none;
+            display: block;
         }
 
     </style>
 </head>
 
 <body>
-<div id="main">
-    <h1 id="test">Доступ в школу</h1>
+<div>
+    <h1 id="let"></h1>
 </div>
-<div id="timer" ></div>
+<div id="timer"></div>
 
 <div id="qrcode" style="margin: 20px;"></div>
-<div id="main1">
-    <h1 id="test1"></h1>
+<div>
+    <h1 id="user_name"></h1>
 </div>
 
 <script>
     // Получаем параметры из URL
     const params = new URLSearchParams(window.location.search);
     const data = params.get('data'); // Получаем параметр data
-
+    const name = params.get('name')
     // Если data есть, то генерируем QR код
-    if (data) {
-
+    if (data && name) {
+        document.getElementById("user_name").textContent = name;
+        document.getElementById("let").textContent = "Ваш QR-код:";
       QRCode.toDataURL(data, { width: 290, height: 290 }, function (err, url) {
         document.getElementById('qrcode').innerHTML = `<img src="${url}" id="qr">`;
       });
     } else {
-      document.getElementById('qrcode').innerText = 'Параметр data не найден.';
+      alert("Критическая ошибка");
     }
-</script>
-
-<script>
-    let tg = window.Telegram.WebApp;
-
-    tg.MainButton.show();
-    tg.MainButton.text = "Получить QR - код";
-    tg.secondary_bg_color = "#313131"
-    Telegram.WebApp.onEvent('mainButtonClicked', function() {
-        document.getElementById("qr").style.display = "block";
-        document.getElementById("timer").style.display = "block";
-        document.getElementById("test").textContent = "Ваш QR-код:";
-        document.getElementById("test1").textContent = params.get('name')
-        tg.MainButton.hide();
-    });
 </script>
 </body>
 
